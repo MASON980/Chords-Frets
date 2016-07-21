@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/menu_goto"
+        android:title="@string/menu_return"
+        />
+    <!--
+    <item android:id="@+id/resize_area"
+        android:title="@string/menu_resize_label"
+        app:showAsAction="ifRoom|withText" />
+    -->
+</menu>
