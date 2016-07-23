@@ -2,5 +2,19 @@
     <string name="app_name">Fretter&amp;Chords</string>
     <string name="menu_resize_label">Resize Guitar</string>
     <string name="menu_return">Main Menu</string>
+    <string name="save_chord">Save Chord</string>
+    <string name="default_chords">Restore default chords</string>
+    <string name="delete_chord">Delete Chord</string>
+    <string name="delete_all_chords">Delete All Chords</string>
+    <string name="begin_game">BEGIN</string>
+    <string name="add_chords">ADD CHORDS</string>
+    <string name="reset_stats">RESET</string>
+    <string name="info">INFO</string>
+    <string name="string_hint">Number of Strings</string>
+    <string name="fret_hint">Number of Frets</string>
+
+    <string name="readme">See https://github.com/MASON980/Chords-Frets</string>
+
+    <string name="author">by MASON980, Mason Tilley</string>
 
 </resources>
