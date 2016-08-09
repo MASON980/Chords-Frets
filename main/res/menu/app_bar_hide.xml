@@ -2,8 +2,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bar_edit">
 
-    <item android:id="@+id/menu_goto"
-        android:title="@string/menu_return"
+    <item android:id="@+id/hide_bar"
+        android:title="@string/hide_app_bar"
         />
     <!--
     <item android:id="@+id/resize_area"

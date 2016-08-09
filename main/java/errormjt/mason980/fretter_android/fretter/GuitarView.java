@@ -10,7 +10,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.Environment;
-import android.support.v7.app.AlertDialog;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -76,15 +75,17 @@ public class GuitarView extends View {
     float height = 100;
     float increment_x = 100;
     float increment_y = 100;
+    int y_bar = 0;
 
     public GuitarView(Context context) throws Exception {
         super(context);
     }
 
-    public void setup (int s, int f, int x_s, int y_s, Fretting_screen h, boolean game, boolean edit) throws Exception {
+    public void setup (int s, int f, int x_s, int y_s, Fretting_screen h, int yb, boolean game, boolean edit) throws Exception {
         setStats(s, f, x_s, y_s);
         setHost(h);
         init(game, edit);
+        y_bar = yb;
     }
 
     public void setStats(int s, int f, int x_s, int y_s) throws Exception {
@@ -101,6 +102,14 @@ public class GuitarView extends View {
         //    onSizeChanged(w, h, w, h);      // probably be better changing the size of the encapsulating view
         }
 
+    }
+
+    public void setYBar (int y) {
+        y_bar = y;
+        int h = Resources.getSystem().getDisplayMetrics().heightPixels;
+        int w = Resources.getSystem().getDisplayMetrics().widthPixels;
+        onSizeChanged(w, h, w, h);
+        invalidate();
     }
 
     public void setHost (Fretting_screen f) {
@@ -450,6 +459,7 @@ public class GuitarView extends View {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        h = h - y_bar;
         super.onSizeChanged(w, h, oldw, oldh);
 
         float xpad = (float)(getPaddingLeft() + getPaddingRight());
@@ -461,7 +471,7 @@ public class GuitarView extends View {
         width = ww;
         height = hh;
         increment_x = ww / STRINGS;
-        increment_y = hh / FRETS;
+        increment_y =(int)(hh / (FRETS*1.05));
 
         try {
             prepare();
@@ -686,6 +696,13 @@ public class GuitarView extends View {
 
         long lo = Math.round(Math.random() * (chords_global.length() - 1));
         int index = (int) lo;       //  this    |COULD|     be a problem
+
+        if (index == previous_chord) {
+            index++;
+            if (index >= chords_global.length()) {
+                index = 0;
+            }
+        }
         boolean outside = true;
         outside = checkChordBoundary(index);
         int starting_index = index;

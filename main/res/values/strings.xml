@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fretter&amp;Chords</string>
+    <string name="app_name">Fretter &amp; Chords</string>
     <string name="menu_resize_label">Resize Guitar</string>
     <string name="menu_return">Main Menu</string>
     <string name="save_chord">Save Chord</string>
@@ -12,6 +12,7 @@
     <string name="info">INFO</string>
     <string name="string_hint">Number of Strings</string>
     <string name="fret_hint">Number of Frets</string>
+    <string name="hide_app_bar">Hide this app bar</string>
 
     <string name="readme">See https://github.com/MASON980/Chords-Frets</string>
 

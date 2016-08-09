@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -27,6 +28,17 @@ public class Fretting_screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fretting_screen);
 
+        final Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
+        if (game) {
+            myToolbar.inflateMenu(R.menu.app_bar_game);
+        } else {
+            myToolbar.inflateMenu(R.menu.app_bar_edit);
+        }
+
+        // not needed until I find out the name of the button
+//        myToolbar.inflateMenu(R.menu.app_bar_hide);
 
 
         getIntent().getIntExtra("y_size", 0);
@@ -36,24 +48,33 @@ public class Fretting_screen extends AppCompatActivity {
 
         game = getIntent().getBooleanExtra("game", true);
 
-   //     frame = new FrameLayout(Fretting_screen.this);      // sizing here
+        frame = (FrameLayout) findViewById(R.id.guitar_frame);      // sizing here
 
         try {
 
             guitar = new GuitarView(getApplicationContext());
-            guitar.setup(string_number, fret_number, 0, 0, Fretting_screen.this, game, !game);
+            guitar.setup(string_number, fret_number, 0, 0, Fretting_screen.this, myToolbar.getHeight(), game, !game);
 
             if (game) {
                 guitar.beginGame();
             } else {
                 guitar.beginOther();
             }
-            setContentView(guitar);
+            //setContentView(guitar);
+            frame.addView(guitar);
+
+            final ViewTreeObserver observer= myToolbar.getViewTreeObserver();
+            observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    guitar.setYBar(myToolbar.getHeight());
+                }
+            });
 
         } catch (Exception e) {
             toMenu(e.getMessage());
         }
-     //   setContentView(frame);
+        //setContentView(frame);
 
     }
 
@@ -104,6 +125,11 @@ public class Fretting_screen extends AppCompatActivity {
                 } catch (Exception e) {
                     toMenu(e.getMessage());
                 }
+                return true;
+
+            case R.id.hide_bar:
+                    Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+                    myToolbar.setVisibility(View.GONE);
                 return true;
 
 

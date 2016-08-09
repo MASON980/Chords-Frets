@@ -9,12 +9,25 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        app:layout_constraintLeft_toLeftOf="@+id/activity_fretting_screen"
+        app:layout_constraintTop_toTopOf="@+id/activity_fretting_screen"
+        app:layout_constraintRight_toRightOf="@+id/activity_fretting_screen" />
 
+    <android.support.v7.widget.ContentFrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/guitar_frame"
+        app:layout_constraintLeft_toLeftOf="@+id/activity_fretting_screen"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        app:layout_constraintRight_toRightOf="@+id/activity_fretting_screen"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_fretting_screen">
+
+    </android.support.v7.widget.ContentFrameLayout>
 
 </android.support.constraint.ConstraintLayout>
